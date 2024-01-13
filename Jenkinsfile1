@@ -7,13 +7,14 @@ pipeline {
 
   agent any
 
-  stages {
-
-    stage('Checkout Source') {
-      steps {
-        git 'https://github.com/Gauravkr2024/Myfirstapp.git'
-      }
+  stage('Checkout Source') {
+    steps {
+        script {
+            // Specify 'main' branch for Git checkout
+            git branch: 'main', url: 'https://github.com/Gauravkr2024/Myfirstapp.git'
+        }
     }
+}
 
     stage('Build image') {
       steps{
