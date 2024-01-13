@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    dockerimagename = "thetips4you/nodeapp"
+    dockerimagename = "gaurav123shub/calculatorapp"
     dockerImage = ""
   }
 
@@ -11,7 +11,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/shazforiot/nodeapp_test.git'
+        git 'https://github.com/Gauravkr2024/Myfirstapp.git'
       }
     }
 
@@ -39,8 +39,12 @@ pipeline {
     stage('Deploying App to Kubernetes') {
       steps {
         script {
-          kubernetesDeploy(configs: "deploymentservice.yml", kubeconfigId: "kubernetes")
-        }
+    // Deploy Deployment YAML
+    kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubernetes")
+
+    // Deploy Service YAML
+    kubernetesDeploy(configs: "service.yaml", kubeconfigId: "kubernetes")
+}
       }
     }
 
